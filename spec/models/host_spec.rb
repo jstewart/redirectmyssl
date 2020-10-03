@@ -8,16 +8,8 @@ RSpec.describe Host, type: :model do
     it { should validate_presence_of(:hostname) }
     it { should validate_presence_of(:redirect_id) }
     it { should validate_uniqueness_of(:hostname) }
-  end
-
-  describe "url validation" do
-    context "with an invalid hostname" do
-      it "should be invalid with a bad hostname" do
-        expect(host).not_to allow_value("^^*.com")
-                    .for(:hostname)
-                    .with_message("is not a valid hostname")
-      end
-    end
+    it { should allow_value("foo.example.com").for(:hostname) }
+    it { should_not allow_value("^^*.com").for(:hostname) }
   end
 
   describe "associations" do

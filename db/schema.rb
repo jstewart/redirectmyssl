@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_26_201211) do
+ActiveRecord::Schema.define(version: 2020_09_30_161702) do
+
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -18,9 +19,16 @@ ActiveRecord::Schema.define(version: 2020_09_26_201211) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "hosts", force: :cascade do |t|
+    t.string "hostname", null: false
+    t.integer "redirect_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["redirect_id"], name: "index_hosts_on_redirect_id"
+  end
+
   create_table "redirects", force: :cascade do |t|
-    t.string "from"
-    t.string "to"
+    t.string "destination"
     t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -28,5 +36,6 @@ ActiveRecord::Schema.define(version: 2020_09_26_201211) do
     t.index ["account_id"], name: "index_redirects_on_account_id"
   end
 
+  add_foreign_key "hosts", "redirects"
   add_foreign_key "redirects", "accounts"
 end

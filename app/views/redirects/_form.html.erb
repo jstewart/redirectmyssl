@@ -16,14 +16,17 @@
   <%= form.collection_select :account_id, Account.all, :id, :name %>
 </div>
 
+<%= form.fields_for :hosts, redirect.hosts do |hosts_form| %>
 <div class="field">
-  <%= form.label :from %>
-  <%= form.text_field :from %>
+  <%= hosts_form.label :hostname %>
+  <%= hosts_form.text_field :hostname %>
+  <%= hosts_form.check_box :_destroy %>
 </div>
+<% end %>
 
 <div class="field">
-  <%= form.label :to %>
-  <%= form.text_field :to %>
+  <%= form.label :destination, "Destination URL" %>
+  <%= form.text_field :destination %>
 </div>
 
 <div class="field">

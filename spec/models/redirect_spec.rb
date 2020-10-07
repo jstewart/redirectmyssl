@@ -11,4 +11,8 @@ RSpec.describe Redirect, type: :model do
     it { should belong_to(:account) }
     it { should have_many(:hosts) }
   end
+
+  context "Nesting" do
+    it { should accept_nested_attributes_for(:hosts).allow_destroy(true) }
+  end
 end

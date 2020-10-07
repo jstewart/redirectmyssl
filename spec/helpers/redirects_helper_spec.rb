@@ -1,15 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 
-# Specs in this file have access to a helper object that includes
-# the RedirectsHelper. For example:
-#
-# describe RedirectsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe RedirectsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "#with_built_host" do
+    it "builds a new record for nested form" do
+      redirect = build(:redirect)
+      redirect.hosts.length.should eq(0)
+      helper.with_built_host(redirect)
+      redirect.hosts.length.should eq(1)
+    end
+  end
 end

@@ -5,6 +5,8 @@ RSpec.describe Host, type: :model do
 
   describe "validations" do
     subject { create(:host) }
+
+    it { puts host.inspect }
     it { should validate_presence_of(:hostname) }
     it { should validate_presence_of(:redirect_id) }
     it { should validate_uniqueness_of(:hostname) }

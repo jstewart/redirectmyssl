@@ -1,5 +1,5 @@
 <h1>New Redirect</h1>
 
-<%= render 'form', redirect: @redirect %>
+<%= render 'form', redirect: with_built_host(@redirect) %>
 
 <%= link_to 'Back', redirects_path %>

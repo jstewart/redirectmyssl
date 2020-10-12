@@ -1,7 +1,7 @@
 class Redirect < ApplicationRecord
   validates :destination, presence: true, url: true
 
-  belongs_to :account
+  belongs_to :user
   has_many :hosts, dependent: :destroy
 
   accepts_nested_attributes_for :hosts,

@@ -14,14 +14,14 @@
 
   <tbody>
     <% @redirects.each do |redirect| %>
-      <tr>
-        <td><%= redirect.from %></td>
-        <td><%= redirect.to %></td>
-        <td><%= redirect.active %></td>
-        <td><%= link_to 'Show', redirect %></td>
-        <td><%= link_to 'Edit', edit_redirect_path(redirect) %></td>
-        <td><%= link_to 'Destroy', redirect, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%# redirect.from %></td>
+      <td><%= redirect.destination %></td>
+      <td><%= redirect.active %></td>
+      <td><%= link_to 'Show', redirect %></td>
+      <td><%= link_to 'Edit', edit_redirect_path(redirect) %></td>
+      <td><%= link_to 'Destroy', redirect, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>

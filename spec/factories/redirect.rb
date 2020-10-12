@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :redirect do
-    account
+    user
     destination { "https://www.example.com" }
     active { true }
   end

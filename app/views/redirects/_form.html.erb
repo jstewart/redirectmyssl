@@ -11,11 +11,6 @@
 </div>
 <% end %>
 
-<div class="field">
-  <%= form.label :account_id, "Account" %>
-  <%= form.collection_select :account_id, Account.all, :id, :name %>
-</div>
-
 <%= form.fields_for :hosts, redirect.hosts do |hosts_form| %>
 <div class="field">
   <%= hosts_form.label :hostname %>

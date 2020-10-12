@@ -22,11 +22,11 @@ class RedirectsController < ApplicationController
   # POST /redirects
   # POST /redirects.json
   def create
-    @redirect = Redirect.new(redirect_params)
+    @redirect = current_user.redirects.new(redirect_params)
 
     respond_to do |format|
       if @redirect.save
-        format.html { redirect_to @redirect, notice: 'Redirect was successfully created.' }
+        format.html { redirect_to @redirect, notice: "Redirect was successfully created." }
         format.json { render :show, status: :created, location: @redirect }
       else
         format.html { render :new }
@@ -40,7 +40,7 @@ class RedirectsController < ApplicationController
   def update
     respond_to do |format|
       if @redirect.update(redirect_params)
-        format.html { redirect_to @redirect, notice: 'Redirect was successfully updated.' }
+        format.html { redirect_to @redirect, notice: "Redirect was successfully updated." }
         format.json { render :show, status: :ok, location: @redirect }
       else
         format.html { render :edit }
@@ -54,20 +54,19 @@ class RedirectsController < ApplicationController
   def destroy
     @redirect.destroy
     respond_to do |format|
-      format.html { redirect_to redirects_url, notice: 'Redirect was successfully destroyed.' }
+      format.html { redirect_to redirects_url, notice: "Redirect was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_redirect
+      @redirect = current_user.redirects.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_redirect
-    @redirect = Redirect.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
-  def redirect_params
-    params.require(:redirect).permit(:from, :to, :active, :account_id)
-  end
+    # Only allow a list of trusted parameters through.
+    def redirect_params
+      params.require(:redirect).permit(:destination, :active)
+    end
 end

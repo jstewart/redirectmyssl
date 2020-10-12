@@ -8,7 +8,7 @@ RSpec.describe Redirect, type: :model do
   end
 
   context "Associations" do
-    it { should belong_to(:account) }
+    it { should belong_to(:user) }
     it { should have_many(:hosts) }
   end
 

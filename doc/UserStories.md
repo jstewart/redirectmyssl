@@ -5,7 +5,8 @@
 As a public user
 
 * As a public user, I can see an overview of services that are offered
-* As a public user, I can register an account with my email address and password
+* As a public user, I can register an account with my email address and password (devise registerable)
+* As a public user, I can see a nice page to register with
 
 As a subscriber
 

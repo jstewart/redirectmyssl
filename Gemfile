@@ -1,13 +1,13 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.1"
+ruby "3.0.0"
 
-gem "rails", "~> 6.0.3", ">= 6.0.3.3"
+gem "rails", "~> 6.1.1"
 gem "sqlite3", "~> 1.4"
-gem "puma", "~> 4.1"
-gem "sass-rails", ">= 6"
-gem "webpacker", "~> 4.0"
+gem "puma", "~> 5.2"
+gem "webpacker", "~> 6.0.0.beta"
+gem "sass-rails", "~> 6"
 gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.7"
 gem "bootsnap", ">= 1.4.2", require: false
@@ -18,7 +18,6 @@ group :development, :test do
   gem "rspec-rails", "~> 4.0.0"
   gem "factory_bot_rails"
 end
-
 
 group :development do
   gem "web-console", ">= 3.3.0"

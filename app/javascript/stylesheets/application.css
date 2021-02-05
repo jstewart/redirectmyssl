@@ -12,5 +12,5 @@
 }
 
 .alert {
-  @apply flash text-red-500 bg-red-200 border-orange-500;
+  @apply flash text-red-500 bg-red-200 border-red-500;
 }

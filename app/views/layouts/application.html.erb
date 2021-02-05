@@ -7,6 +7,8 @@
   <%= csp_meta_tag %>
 
   <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
@@ -14,14 +16,14 @@
   <%= render partial: 'layouts/nav' %>
   <div class="container mx-auto">
     <% if flash.any? %>
-    <div class="flashes flex flex-col justify-center py-4 px-4 sm:px-6 lg:px-8">
+    <div class="flashes flex flex-col justify-center py-4 px-2">
       <% if notice %>
-      <div id="notice" class="text-green-500 rounded-md bg-green-200 border-green-500 p-3 mb-2 font-semibold">
+      <div id="notice" class="notice">
         <%= notice %>
       </div>
       <% end %>
       <% if alert %>
-      <div id="alert" class="text-red-500 rounded-md bg-red-200 border-orange-500 p-3 mb-2 font-semibold">
+      <div id="alert" class="alert">
         <%= alert %>
       </div>
       <% end %>

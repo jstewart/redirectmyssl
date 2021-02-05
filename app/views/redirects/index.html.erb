@@ -1,31 +1,59 @@
-<p id="notice"><%= notice %></p>
+<div class="flex flex-row justify-between mb-6">
+  <h1 class="py-1 text-center text-3xl leading-9 font-extrabold text-gray-900">My Redirects</h1>
+  <span class="inline-flex rounded-md shadow-sm">
+    <%= link_to 'New Redirect', new_redirect_path, class: "whitespace-no-wrap inline-flex items-center justify-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150" %>
+  </span>
+</div>
 
-<h1>Redirects</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>From</th>
-      <th>To</th>
-      <th>Active</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @redirects.each do |redirect| %>
-    <tr>
-      <td><%# redirect.from %></td>
-      <td><%= redirect.destination %></td>
-      <td><%= redirect.active %></td>
-      <td><%= link_to 'Show', redirect %></td>
-      <td><%= link_to 'Edit', edit_redirect_path(redirect) %></td>
-      <td><%= link_to 'Destroy', redirect, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Redirect', new_redirect_path %>
+<div class="flex flex-col">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead>
+            <tr>
+              <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Host(s)
+              </th>
+              <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Destination
+              </th>
+              <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Active?
+              </th>
+              <th class="px-6 py-3 bg-gray-50"></th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <% @redirects.each do |redirect| %>
+            <tr>
+              <td class="px-6 py-4 whitespace-no-wrap">
+                <div class="text-sm leading-5 text-gray-900">
+                  <%# TODO: This can be a lot better %>
+                  <%= truncate redirect.hosts.map(&:hostname).join(', ') %>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
+                <%= truncate redirect.destination %>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap">
+                <%# TODO: this is a helper. %>
+                <% active_classes = redirect.active? ? %w[bg-green-100 text-green-800] : %w[bg-red-100 text-red-800] %>
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= active_classes.join(' ') %>">
+                  <%= redirect.active? ? "Yes" : "No" %>
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                <%= link_to 'Show', redirect %>
+                <%= link_to 'Edit', edit_redirect_path(redirect) %>
+                <%= link_to 'Destroy', redirect, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

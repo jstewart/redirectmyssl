@@ -10,10 +10,9 @@ As a public user
 
 As a subscriber
 
-* As a subscriber, I can log in and out of my account
-* As a subscriber, I can view a list of my redirects
-* As a subscriber, I can view the details of each redirect
-* As a subscriber, I can CRUD my redirects
+* P1 As a subscriber, I can view a list of my redirects
+* P1 As a subscriber, I can view the details of each redirect
+* P1 As a subscriber, I can CRUD my redirects
 
 
 As an Admin

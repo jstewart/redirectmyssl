@@ -1,6 +1,6 @@
 <nav>
-  <div class="container mx-auto px-5 py-2 flex justify-between items-center">
-    <a class="font-bold text-2xl lg:text-4xl" href="#">
+  <div class="container mx-auto py-2 mb-5 flex justify-between items-center">
+    <a class="font-bold text-2xl lg:text-4xl" href="/">
       RedirectMySSL
     </a>
     <div class="block lg:hidden">
@@ -14,7 +14,11 @@
     </div>
     <div class="hidden lg:block">
       <ul class="inline-flex">
-        <li><a class="px-4 hover:text-gray-800" href="/">Login</a></li>
+        <% if user_signed_in? %>
+        <li><%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "px-4 hover:text-gray-800" %></li>
+        <% else %>
+        <li><%= link_to "Log in", new_user_session_path, class: "px-4 hover:text-gray-800" %></li>
+        <% end %>
         <li><a class="px-4 hover:text-gray-800" href="#">About</a></li>
         <li><a class="px-4 hover:text-gray-800" href="#">Contact</a></li>
       </ul>

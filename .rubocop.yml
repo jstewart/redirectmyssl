@@ -1,5 +1,7 @@
 Style/FrozenStringLiteralComment:
   Enabled: false
 inherit_gem:
+  prettier:
+    - rubocop.yml
   rubocop-rails_config:
     - config/rails.yml

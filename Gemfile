@@ -22,6 +22,7 @@ end
 group :development do
   gem "web-console", ">= 3.3.0"
   gem "listen", "~> 3.2"
+  gem "prettier"
   gem "rubocop", require: false
   gem "rubocop-rails_config", require: false
   gem "solargraph"
@@ -35,3 +36,5 @@ group :test do
   gem "shoulda-matchers", "~> 4.0"
   gem "webdrivers"
 end
+
+gem "hotwire-rails", "~> 0.1.3"

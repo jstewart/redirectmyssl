@@ -1,0 +1,3 @@
+/tmp/*
+/public/packs*
+/db/*.sqlite3

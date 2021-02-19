@@ -1,6 +1,10 @@
-require('@rails/ujs').start();
-require('turbolinks').start();
-require('@rails/activestorage').start();
-require('channels');
+import * as Turbo from "@hotwired/turbo";
+Turbo.start();
 
-import '../stylesheets/application.css';
+require("@rails/ujs").start();
+require("@rails/activestorage").start();
+require("channels");
+
+import "../stylesheets/application.css";
+
+import "controllers";

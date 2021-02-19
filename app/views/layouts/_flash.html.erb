@@ -1,0 +1,14 @@
+<% if flash.any? %>
+  <div class="flashes justify-center py-4 px-2 w-full">
+    <% if notice %>
+      <div id="notice" class="notice">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div id="alert" class="alert">
+        <%= alert %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

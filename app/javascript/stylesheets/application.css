@@ -4,13 +4,20 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-.flash {
-  @apply rounded-md p-3 mb-2 font-semibold;
-}
-.notice {
-  @apply flash text-green-500 bg-green-200 border-green-500;
-}
+@layer components {
+  .btn-primary {
+    @apply w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:ring ring-1 ring-blue-700 ring-opacity-5 active:bg-blue-700 transition duration-150 ease-in-out;
+  }
 
-.alert {
-  @apply flash text-red-500 bg-red-200 border-red-500;
+  .flash {
+    @apply rounded-md p-3 mb-2 font-semibold;
+  }
+
+  .notice {
+    @apply flash text-green-500 bg-green-200 border-green-500;
+  }
+
+  .alert {
+    @apply flash text-red-500 bg-red-200 border-red-500;
+  }
 }

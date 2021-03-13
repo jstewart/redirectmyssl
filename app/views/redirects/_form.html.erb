@@ -1,35 +1,43 @@
-<%= form_with(model: redirect, local: true) do |form| %>
-<% if redirect.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(redirect.errors.count, "error") %> prohibited this redirect from being saved:</h2>
+<%= form_with(model: redirect, url: redirects_path, local: true,  class: "flex my-2") do |form| %>
+  <div
+    class="p-3 flex flex-col w-full border border-gray-100 shadow overflow-hidden sm:rounded-md"
+  >
+    <% if redirect.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(redirect.errors.count, "error") %> prohibited this
+          redirect from being saved:
+        </h2>
 
-  <ul>
-    <% redirect.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
+        <ul>
+          <% redirect.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
-  </ul>
-</div>
-<% end %>
 
-<%= form.fields_for :hosts, redirect.hosts do |hosts_form| %>
-<div class="field">
-  <%= hosts_form.label :hostname %>
-  <%= hosts_form.text_field :hostname %>
-  <%= hosts_form.check_box :_destroy %>
-</div>
-<% end %>
+    <div class="my-2 w-full">
+      <%= form.label :hosts, "Hosts List", class: "block font-medium text-gray-700" %>
+      <%= form.text_area :hosts, rows: 5, class: "block w-full px-3 py-2 focus:ring-blue-500 focus:border-blue-500 w-full sm:text-sm border border-gray-300 rounded-md" %>
+    </div>
 
-<div class="field">
-  <%= form.label :destination, "Destination URL" %>
-  <%= form.text_field :destination %>
-</div>
+    <div class="my-2 w-full">
+      <%= form.label :destination, "Destination URL", class: "block font-medium text-gray-700" %>
+      <%= form.text_field :destination, class: "block w-full px-3 py-2 focus:ring-blue-500 focus:border-blue-500 w-full sm:text-sm border border-gray-300 rounded-md" %>
+    </div>
 
-<div class="field">
-  <%= form.label :active %>
-  <%= form.check_box :active %>
-</div>
+    <% if redirect.persisted? %>
+      <div class="my-2 w-full">
+        <%= form.label :active do %>
+          <%= form.check_box :active, class: "ml-2" %>
+          Active
+        <% end %>
+      </div>
+    <% end %>
 
-<div class="actions">
-  <%= form.submit %>
-</div>
+    <div class="mt-2 w-1/6">
+      <%= form.submit class: "btn-primary" %>
+    </div>
+  </div>
 <% end %>

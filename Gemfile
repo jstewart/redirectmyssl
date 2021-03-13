@@ -6,12 +6,12 @@ ruby "3.0.0"
 gem "rails", "~> 6.1.1"
 gem "sqlite3", "~> 1.4"
 gem "puma", "~> 5.2"
-gem "webpacker", "~> 6.0.0.beta"
 gem "sass-rails", "~> 6"
 gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.7"
 gem "bootsnap", ">= 1.4.2", require: false
 gem "devise", "~> 4.7"
+gem "webpacker", "6.0.0.beta.6"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]

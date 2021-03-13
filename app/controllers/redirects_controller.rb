@@ -5,6 +5,7 @@ class RedirectsController < ApplicationController
   # GET /redirects.json
   def index
     @redirects = Redirect.all
+    @redirect = RedirectForm.new(user: current_user)
   end
 
   # GET /redirects/1
@@ -22,15 +23,22 @@ class RedirectsController < ApplicationController
   # POST /redirects
   # POST /redirects.json
   def create
-    @redirect = current_user.redirects.new(redirect_params)
-
+    @redirect = RedirectForm.new(redirect_params.merge(user: current_user))
     respond_to do |format|
-      if @redirect.save
-        format.html { redirect_to @redirect, notice: "Redirect was successfully created." }
+      if @redirect.submit
+        format.html do
+          redirect_to @redirect, notice: "Redirect was successfully created."
+        end
         format.json { render :show, status: :created, location: @redirect }
       else
-        format.html { render :new }
-        format.json { render json: @redirect.errors, status: :unprocessable_entity }
+        format.html do
+          @redirects = Redirect.all
+          render :index, status: :unprocessable_entity
+        end
+
+        format.json do
+          render json: @redirect.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -40,11 +48,15 @@ class RedirectsController < ApplicationController
   def update
     respond_to do |format|
       if @redirect.update(redirect_params)
-        format.html { redirect_to @redirect, notice: "Redirect was successfully updated." }
+        format.html do
+          redirect_to @redirect, notice: "Redirect was successfully updated."
+        end
         format.json { render :show, status: :ok, location: @redirect }
       else
         format.html { render :edit }
-        format.json { render json: @redirect.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @redirect.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -54,19 +66,23 @@ class RedirectsController < ApplicationController
   def destroy
     @redirect.destroy
     respond_to do |format|
-      format.html { redirect_to redirects_url, notice: "Redirect was successfully destroyed." }
+      format.html do
+        redirect_to redirects_url,
+                    notice: "Redirect was successfully destroyed."
+      end
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_redirect
-      @redirect = current_user.redirects.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def redirect_params
-      params.require(:redirect).permit(:destination, :active)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_redirect
+    @redirect = current_user.redirects.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def redirect_params
+    params.require(:redirect).permit(:destination, :hosts, :url, :active)
+  end
 end

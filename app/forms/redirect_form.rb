@@ -12,10 +12,7 @@ class RedirectForm
 
     @redirect = Redirect.new(destination: destination, user: user)
     @hosts ||= ""
-    Rails.logger.info self.inspect
     @hostnames = generate_hostnames
-    @redirect_hosts =
-      @hostnames.map { |h| Host.new(redirect: @redirect, hostname: h) }
   end
 
   def model_name
@@ -27,12 +24,13 @@ class RedirectForm
 
     ActiveRecord::Base.transaction do
       @redirect.save!
-      @redirect_hosts.each(&:save!)
+      @redirect.hosts = @hostnames.map { |h| Host.new(hostname: h) }
     end
 
     true
   rescue ActiveRecord::RecordInvalid
     errors.add(:base, "transaction rolled back")
+
     false
   end
 

@@ -1,5 +1,7 @@
 <h1>New Redirect</h1>
 
-<%= render 'form', redirect: with_built_host(@redirect) %>
+<%= turbo_frame_tag "new_redirect" %>
+  <%= render 'form', redirect: with_built_host(@redirect) %>
+<% end %>
 
 <%= link_to 'Back', redirects_path %>
